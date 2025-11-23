@@ -16,8 +16,6 @@ const EnvSchemaBase = z.object({
 
     FORMULA_ONE_API_PREFIX: z.string(),
     FORMULA_ONE_API_VERSION: z.string(),
-
-    FORMULA_ONE_DATABASE_URL: z.string(),
 })
 
 const { data: Env, error } = EnvSchemaBase.safeParse(process.env);
