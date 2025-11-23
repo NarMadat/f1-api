@@ -4,6 +4,8 @@ import { cors } from "hono/cors";
 import { csrf } from 'hono/csrf'
 import { logger } from '@/lib/utils'
 import Env from "@/env";
+import teamRoutesOpenAPI from "@/modules/team/team.routes";
+import resultRoutesOpenAPI from "./modules/results/results.routes";
 
 const app = new OpenAPIHono();
 
@@ -29,8 +31,9 @@ app.get('/health', (c) => {
 
 const apiRoutes = new OpenAPIHono();
 apiRoutes.use('*')
-// apiRoutes.route('/service-list', listRoutesOpenAPI)
-// apiRoutes.route('/order', orderRoutesOpenAPI)
+apiRoutes.route('/teams', teamRoutesOpenAPI)
+apiRoutes.route('/result', resultRoutesOpenAPI)
+
 
 app.route(`${Env.FORMULA_ONE_API_PREFIX}/${Env.FORMULA_ONE_API_VERSION}`, apiRoutes);
 
