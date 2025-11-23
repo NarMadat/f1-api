@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Team {
+  id       Int      @id @default(autoincrement())
+  name     String
+  country  String
+  engine   String
+  tyre     String
+
+  results  Result[]
+}
+
+model Stage {
+  id          Int      @id @default(autoincrement())
+  name        String
+  country     String
+  date        DateTime
+  attendance  Int
+  lapLengthKm Float
+
+  meta        Json
+
+  results     Result[]
+}
+
+model Result {
+  id          Int      @id @default(autoincrement())
+
+  teamId      Int
+  stageId     Int
+
+  driverName  String
+  laps        Int
+  raceTimeMs  Int
+  position    Int
+  pitstops    Int
+
+  team   Team  @relation(fields: [teamId],  references: [id])
+  stage  Stage @relation(fields: [stageId], references: [id])
+
+  @@index([teamId])
+  @@index([stageId])
+}
