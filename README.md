@@ -25,4 +25,13 @@ Five specialized REST endpoints were built for advanced queries:
 - **UPDATE** with a non-trivial condition  
 - **GROUP BY** (aggregate queries)  
 - **Sorting by a specified field**  
-All logic is located under: `apps/api/src/modules`
+All logic is located under: `apps/api/src/modules/results`
+
+### Task 6 – Index (20 pts)
+All logic is located under: `apps/api/src/modules/meta-data`
+
+### Task 7 – Pagination (10 pts)
+All logic is located under: `apps/api/src/modules/pagination`
+
+
+
