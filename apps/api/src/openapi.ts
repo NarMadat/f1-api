@@ -5,7 +5,9 @@ import { csrf } from 'hono/csrf'
 import { logger } from '@/lib/utils'
 import Env from "@/env";
 import teamRoutesOpenAPI from "@/modules/team/team.routes";
-import resultRoutesOpenAPI from "./modules/results/results.routes";
+import resultRoutesOpenAPI from "@/modules/results/results.routes";
+import metaRoutesOpenAPI from "@/modules/meta-data/meta-data.routes"
+import paginationRoutesOpenAPI from "@/modules/pagination/pagination.routes";
 
 const app = new OpenAPIHono();
 
@@ -33,7 +35,8 @@ const apiRoutes = new OpenAPIHono();
 apiRoutes.use('*')
 apiRoutes.route('/teams', teamRoutesOpenAPI)
 apiRoutes.route('/result', resultRoutesOpenAPI)
-
+apiRoutes.route('/meta-data', metaRoutesOpenAPI)
+apiRoutes.route('/pagination', paginationRoutesOpenAPI)
 
 app.route(`${Env.FORMULA_ONE_API_PREFIX}/${Env.FORMULA_ONE_API_VERSION}`, apiRoutes);
 
